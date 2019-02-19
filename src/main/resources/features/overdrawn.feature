@@ -1,6 +1,6 @@
 Feature: overdrawn
   As a customer
-  I want to overdrawn a negotiated amount specified using ATM
+  I can withdraw money even my account balance is 0.
 
 Background:
   Given a customer with id 1 and pin 111 with balance 200, OD account status with negotiated amount 1000
