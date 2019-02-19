@@ -31,6 +31,11 @@ public class Bank {
    public Customer findCustomer(int aNumber) {
 	  return customers.get(aNumber);
    }
+
+   public boolean isODCustomer(int aNumber) {
+      Customer c = findCustomer(aNumber);
+      return c.getIsOD();
+   }
    
    private Map<Integer, Customer> customers;
 }

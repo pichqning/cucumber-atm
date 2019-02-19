@@ -6,6 +6,7 @@ package ku.atm;
 public class Customer {
    private int customerNumber;
    private int pin;
+   private boolean isOd;
    private BankAccount account;
 
    /**
@@ -21,6 +22,13 @@ public class Customer {
 
    public Customer(int aNumber, int aPin) {
       this(aNumber, aPin, 0);
+   }
+
+   public Customer(int aNumber, int aPin, double currentBalance, boolean isOD, double negotiatedAmount){
+      this.customerNumber = aNumber;
+      this.pin = aPin;
+      this.isOd = isOD;
+      this.account = new BankAccount(currentBalance, negotiatedAmount);
    }
 
    public int getCustomerNumber() {
@@ -43,6 +51,10 @@ public class Customer {
    */
    public BankAccount getAccount() {
       return account;
+   }
+
+   public boolean getIsOD(){
+      return isOd;
    }
    
 }

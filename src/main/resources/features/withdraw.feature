@@ -11,5 +11,5 @@ Scenario: Withdraw amount less than balance
     Then my account balance is 150
 
 Scenario: Withdraw amount more than balance
-    When I overdraw 5000 from ATM
+    When I overdraw 5000 from ATM, id 1
     Then my account balance is 200

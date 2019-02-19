@@ -66,6 +66,12 @@ public class ATM {
         }
 	}
 
+	public void overdraw(double value, boolean isAccountOD) throws NotEnoughBalanceException {
+		if (state == TRANSACT) {
+			currentAccount.overdraw(value, isAccountOD);
+		}
+	}
+
 	/** 
       Deposits amount to current account. 
       (Precondition: state is TRANSACT)
@@ -89,6 +95,13 @@ public class ATM {
         return -1;
 	}
 
+	public double getNegotiatedAmount() {
+		if (state == TRANSACT) {
+			return currentAccount.getNegotiatedAmount();
+		}
+		return -1;
+	}
+
 	public void transfer(int customerNum, double amount) throws NotEnoughBalanceException {
         if (state == TRANSACT) {
             Customer receivingCustomer = theBank.findCustomer(customerNum);
@@ -104,6 +117,11 @@ public class ATM {
 	 */
 	public int getState() {
 		return state;
+	}
+
+	public boolean setIsOD(String status) {
+		if(status.equals("OD")) return true;
+		else return false;
 	}
 
 }

@@ -6,6 +6,7 @@ package ku.atm;
 */
 public class BankAccount {
    private double balance;
+   private double negotiatedAmount;
 
    /**
       Constructs a bank account with a zero balance.
@@ -20,6 +21,11 @@ public class BankAccount {
    */
    public BankAccount(double initialBalance) {
       balance = initialBalance;
+   }
+
+   public BankAccount(double initialBalance, double negotiatedAmount){
+      this.balance = initialBalance;
+      this.negotiatedAmount = negotiatedAmount;
    }
  
    /** 
@@ -40,6 +46,12 @@ public class BankAccount {
        balance = balance - amount;
    }
 
+   public void overdraw(double amount, boolean isAccountOD) throws NotEnoughBalanceException {
+      if (amount > negotiatedAmount || !isAccountOD)
+         throw new NotEnoughBalanceException("cannot overdraw more than negotiated amount");
+      else negotiatedAmount -= amount;
+   }
+
    /** 
       Gets the account balance.
       @return the account balance
@@ -48,5 +60,8 @@ public class BankAccount {
       return balance; 
    }
 
+   public double getNegotiatedAmount() {
+      return negotiatedAmount;
+   }
 }
 
